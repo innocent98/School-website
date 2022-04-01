@@ -1,0 +1,57 @@
+@import "../../global.scss";
+
+.service {
+  display: flex;
+  padding: 60px;
+  @include mobile {
+    padding: 10px 20px;
+    flex-direction: column;
+    height: auto !important;
+  }
+  @include tab{
+   flex-direction: column; 
+   height: auto !important;
+  }
+
+  .left {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    @include mobile {
+      flex: none;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: $mainColor;
+      @include mobile {
+        font-size: 25px;
+        height: auto;
+      }
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: $mainColor;
+    }
+  }
+  .right {
+    flex: 0.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include mobile {
+      flex: none;
+    }
+
+    img {
+      height: 350px;
+      width: 350px;
+    }
+  }
+}

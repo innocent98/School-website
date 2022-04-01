@@ -1,0 +1,33 @@
+.table {
+  .table {
+    tbody {
+      .findEngr {
+        display: none;
+      }
+      tr {
+        th {
+          input {
+            cursor: pointer;
+          }
+        }
+        .status {
+          a {
+            text-decoration: none;
+            overflow: hidden;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 12px;
+            padding: 5px;
+            &.active {
+              background-color: green;
+            }
+            &.inactive {
+              background-color: orange;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+@import "../../global.scss";
+
+* {
+  @include mobile {
+    overflow-x: scroll !important;
+  }
+}
+.dashboard {
+  height: 100vh;
+  display: flex;
+
+  .left {
+    flex: 1;
+    background-color: $mainColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .logo {
+      height: 100px;
+      width: 100px;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+    @include mobile {
+      flex: 2;
+    }
+  }
+
+  .right {
+    flex: 4;
+    background-color: rgba(241, 238, 238, 0.87);
+
+    .top {
+      background-color: white;
+      height: 60px;
+      padding: 0px 20px;
+      display: flex;
+      align-items: center;
+      @include mobile {
+        justify-content: space-between;
+      }
+
+      .admin {
+        height: 60px;
+        width: 15%;
+        background-color: rgba(241, 238, 238, 0.87);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        @include mobile {
+          width: 50%;
+        }
+
+        .txt {
+          font-weight: 700;
+        }
+        img {
+          height: 30px;
+          width: 30px;
+          border-radius: 50%;
+        }
+      }
+
+      .notification {
+        margin-left: 20px;
+        cursor: pointer;
+      }
+    }
+
+    .info {
+      padding: 10px 20px;
+    }
+
+    .engrTable {
+      background-color: white;
+      padding: 10px 5px;
+      .table {
+        tbody {
+          tr {
+            th {
+              input {
+                cursor: pointer;
+              }
+            }
+            .status {
+              a {
+                text-decoration: none;
+                overflow: hidden;
+                border: none;
+                border-radius: 5px;
+                color: white;
+                font-size: 12px;
+                padding: 5px;
+                &.active {
+                  background-color: green;
+                }
+                &.inactive {
+                  background-color: orange;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

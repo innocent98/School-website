@@ -1,0 +1,108 @@
+@import "../../global.scss";
+
+.locate {
+  background-color: antiquewhite;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.952),
+      rgba(255, 255, 255, 0.952)
+    ),
+    url("assets/img3.jpeg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-weight: bold;
+    color: $mainColor;
+    @include mobile {
+      font-size: 20px;
+    }
+  }
+  p {
+    @include mobile {
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+  .link {
+    width: 60%;
+    .search {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 40px;
+      border: 5px solid lightgray;
+      overflow: hidden;
+
+      @include mobile {
+        width: 90%;
+        flex-direction: column;
+      }
+
+      .searchBtn {
+        width: 100%;
+        height: inherit;
+        border: none;
+        background-color: $mainColor;
+        color: white;
+      }
+    }
+  }
+
+  .searchBtnDwn {
+    display: none;
+    @include mobile {
+      display: block;
+      border: none;
+      background-color: $mainColor;
+      color: white;
+      padding: 5px 10px;
+      font-size: 20px;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+  }
+
+  .cancel {
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    right: -20%;
+    top: -58%;
+    margin: 10px;
+    color: $mainColor;
+
+    @include mobile {
+      right: -100px;
+    }
+  }
+  .container {
+    width: 35%;
+    background-color: white;
+    height: 80vh;
+    position: absolute;
+    padding: 40px 20px;
+
+    @include mobile {
+      width: 80%;
+    }
+
+    ul {
+      li {
+        line-height: 1;
+        height: 80px;
+        padding: 0;
+        overflow: hidden;
+
+        p {
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
