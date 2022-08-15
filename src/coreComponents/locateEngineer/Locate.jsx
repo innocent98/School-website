@@ -4,72 +4,56 @@ import "./locate.scss";
 import TopBarSec from "../../components/topBarSec/TopBar";
 import avatarp from "./assets/download.png";
 import { axiosInstance } from "../../config";
+import { IpAdrress } from "../../config/Api.config";
 
 const Locate = () => {
-  const [query, setQuery] = useState("");
-  const [engr, setEngr] = useState([]);
+  const [engrs, setEngr] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [ipData, setIPData] = useState();
 
-  const handleChange = (e) => {
-    setQuery(e.target.value.toLowerCase());
-  };
-
+  // get IP address
   useEffect(() => {
-    const fetchEngrC = async () => {
+    if (!ipData) {
+      IpAdrress({ setLoading, setIPData });
+    }
+  }, [ipData]);
+  
+  const getEngineer = async () => {
+    try {
       const res = await axiosInstance.get(
-        `/engineer/engineer/?country=${query}`
+        `/engineer/engineer/?location=${ipData}`
       );
       setEngr(res.data);
-    };
-    fetchEngrC();
-
-    const fetchEngrS = async () => {
-      const res = await axiosInstance.get(`/engineer/engineer/?state=${query}`);
-      setEngr(res.data);
-    };
-    fetchEngrS();
-
-    const fetchEngrT = async () => {
-      const res = await axiosInstance.get(`/engineer/engineer/?town=${query}`);
-      setEngr(res.data);
-    };
-    fetchEngrT();
-
-    const fetchEngrCi = async () => {
-      const res = await axiosInstance.get(`/engineer/engineer/?city=${query}`);
-      setEngr(res.data);
-    };
-    fetchEngrCi();
-  }, [query]);
+    } catch (error) {
+      return alert(error.response.data);
+    }
+  };
+  console.log(ipData);
 
   return (
     <div className="locateE">
       <div className="top">
         <TopBarSec />
       </div>
-
       <div className="result">
         <h1>LOCATE A NEARBY AUTO SHOP</h1>
         <p>Call us to take care of your roadside assistance needs today.</p>
-        <div className="search">
-          <input
-            type="text"
-            className="form-control shadow-none"
-            placeholder="enter your location (town, city, street...)"
-            onChange={handleChange}
-          />
+        <div className="search" onClick={getEngineer}>
+          Tap to get list of engineers in your area
         </div>
 
         <div className="container">
-          {engr.map((engrs) => (
-            <ul key={engrs.id}>
+          {loading && <p>Please wait while we load data...</p>}
+          {engrs.map((engr) => (
+            <ul key={engr.id}>
               <li>
                 <div className="details">
-                  <p>{engrs.fullName}</p>
-                  <p>{engrs.displayName}</p>
-                  <p>{engrs.address}</p>
+                  <p>{engr.fullName}</p>
+                  <p>{engr.displayName}</p>
+                  <p>{engr.address}</p>
                   <p>
                     <a
-                      href={`tel: ${engrs.phoneNumber}`}
+                      href={`tel: ${engr.phoneNumber}`}
                       style={{ color: "blue", fontWeight: "bold" }}
                     >
                       Click
@@ -78,7 +62,7 @@ const Locate = () => {
                   </p>
                 </div>
                 <div className="img">
-                  <img src={engrs.picture ? engrs.picture : avatarp} alt="" />
+                  <img src={engr.picture ? engr.picture : avatarp} alt="" />
                 </div>
               </li>
               <hr />

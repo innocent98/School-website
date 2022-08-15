@@ -114,15 +114,15 @@ const EditEngr = () => {
             <img src={engr.picture ? engr.picture : avatarp} alt="" />
           </div>
           <div className="details">
-            <p>{engr.fullName}</p>
-            <p>{engr.email}</p>
-            <p>{engr.phoneNumber}</p>
-            <p>{engr.country}</p>
-            <p>{engr.state}</p>
-            <p>{engr.town}</p>
-            <p>{engr.city}</p>
-            <p>{engr.displayName}</p>
-            <p>{engr.address}</p>
+            <p>Full Name: {engr.fullName}</p>
+            <p>Email: {engr.email}</p>
+            <p>Phone: {engr.phoneNumber}</p>
+            <p>Country: {engr.country}</p>
+            <p>State: {engr.state}</p>
+            {/* <p>{engr.town}</p> */}
+            <p>City: {engr.city}</p>
+            <p>Display Name: {engr.displayName}</p>
+            <p>Address: {engr.address}</p>
           </div>
         </div>
       </div>

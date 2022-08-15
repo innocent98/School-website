@@ -29,6 +29,11 @@ const Sidebar = ({ sidebar, setSidebar }) => {
             FAQs
           </a>{" "}
         </li>
+        <li>
+          <a href="/register" onClick={() => setSidebar(!sidebar)}>
+            Register
+          </a>{" "}
+        </li>
       </ul>
     </div>
   );

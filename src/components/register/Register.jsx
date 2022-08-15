@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./register.scss";
 // import axios from "axios";
 import TopBarSec from "../topBarSec/TopBar";
 import storage from "../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { axiosInstance } from "../../config";
+import { IpAdrress } from "../../config/Api.config";
 
 export default function Register() {
   const [success, setSuccess] = useState(false);
@@ -21,6 +22,16 @@ export default function Register() {
   const [picture, setPicture] = useState(null);
   const [click, setClick] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  const [loading, setLoading] = useState(true);
+  const [ipData, setIPData] = useState();
+
+  // get IP address
+  useEffect(() => {
+    if (!ipData) {
+      IpAdrress({ setLoading, setIPData });
+    }
+  }, [ipData]);
 
   const newUpload = {
     fullName,
@@ -70,7 +81,9 @@ export default function Register() {
       const res = await axiosInstance.post("/engineer/", newUpload);
       setSuccess(true);
       window.location.reload("/register" + res.data._id);
-    } catch (error) {}
+    } catch (error) {
+      return alert(error.response.data)
+    }
   };
 
   return (
@@ -126,7 +139,7 @@ export default function Register() {
               onChange={(e) => setState(e.target.value.toLowerCase())}
             />
           </div>
-          <div className="col-md-4">
+          {/* <div className="col-md-4">
             <input
               type="text"
               placeholder="Town"
@@ -134,14 +147,15 @@ export default function Register() {
               className="form-control shadow-none"
               onChange={(e) => setTown(e.target.value.toLowerCase())}
             />
-          </div>
+          </div> */}
           <div className="col-md-4">
             <input
               type="text"
               placeholder="City"
               required
               className="form-control shadow-none"
-              onChange={(e) => setCity(e.target.value.toLowerCase())}
+              value={ipData}
+              onChange={(e) => setCity(ipData)}
             />
           </div>
           <div className="col-md-4">
@@ -180,13 +194,13 @@ export default function Register() {
             </div>
           </div>
           <div className="col-md-4">
-            <button
+            <div
               className="button btn-primary"
               style={picture ? { display: "block" } : { display: "none" }}
               onClick={handleClick}
             >
               Upload picture
-            </button>
+            </div>
           </div>
           <button className="submit-button" type="submit" disabled={progress < 100}>
             Submit

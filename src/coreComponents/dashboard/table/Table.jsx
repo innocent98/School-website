@@ -17,6 +17,8 @@ const Table = () => {
     fetchEngrs();
   }, [setEngr]);
 
+  const reversed = [...engr].reverse()
+
   return (
     <div className="table">
       <table className="table table-striped">
@@ -28,7 +30,7 @@ const Table = () => {
             <th scope="col">Phone Number</th>
             <th scope="col">Country</th>
             <th scope="col">State</th>
-            <th scope="col">Town</th>
+            {/* <th scope="col">Town</th> */}
             <th scope="col">City</th>
             <th scope="col">Display Name</th>
             <th scope="col">Address</th>
@@ -36,7 +38,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {engr.map((engrs) => (
+          {reversed.map((engrs) => (
             <tr key={engrs._id}>
               <th scope="row">
                 <input type="checkbox" name="index" id="" />
@@ -46,7 +48,7 @@ const Table = () => {
               <td>{engrs.phoneNumber}</td>
               <td>{engrs.country}</td>
               <td>{engrs.state}</td>
-              <td>{engrs.town}</td>
+              {/* <td>{engrs.town}</td> */}
               <td>{engrs.city}</td>
               <td>{engrs.displayName}</td>
               <td>{engrs.address}</td>

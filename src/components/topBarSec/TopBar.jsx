@@ -28,6 +28,9 @@ export default function TopBarSec() {
           <li>
             <a href="/">FAQs</a>{" "}
           </li>
+          <li>
+            <a href="/register">Register</a>{" "}
+          </li>
         </ul>
       </div>
 
