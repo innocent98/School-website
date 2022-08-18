@@ -40,7 +40,7 @@ export default function Register() {
     country,
     state,
     town,
-    city,
+    city: ipData.city,
     displayName,
     address,
     picture: picture,
@@ -139,23 +139,24 @@ export default function Register() {
               onChange={(e) => setState(e.target.value.toLowerCase())}
             />
           </div>
-          {/* <div className="col-md-4">
+          <div className="col-md-4">
+            <textarea name="" id="" cols="50" rows="30" value={ipData} placeholder="Town"></textarea>
             <input
               type="text"
               placeholder="Town"
               required
               className="form-control shadow-none"
-              onChange={(e) => setTown(e.target.value.toLowerCase())}
+              value={ipData}
+              // onChange={(e) => setTown(e.target.value.toLowerCase())}
             />
-          </div> */}
+          </div>
           <div className="col-md-4">
             <input
               type="text"
               placeholder="City"
               required
               className="form-control shadow-none"
-              value={ipData}
-              onChange={(e) => setCity(ipData)}
+              onChange={(e) => setTown(e.target.value)}
             />
           </div>
           <div className="col-md-4">

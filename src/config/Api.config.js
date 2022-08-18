@@ -11,7 +11,7 @@ export const IpAdrress = async ({ setLoading, setIPData }) => {
     let res = await axios.get("http://api.ipstack.com/check?access_key=b53668d88173d122eeb775a4017eb0b1");
     if (res) {
       setLoading(false);
-      setIPData(res.data.city);
+      setIPData(res.data);
     }
   } catch (error) {
     alert(`IP Adress Error: ${error}`);
