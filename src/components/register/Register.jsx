@@ -40,7 +40,7 @@ export default function Register() {
     country,
     state,
     town,
-    city: ipData.city,
+    // city: ipData.city,
     displayName,
     address,
     picture: picture,
