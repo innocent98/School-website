@@ -18,7 +18,7 @@ export default function Intro() {
   }, []);
   return (
     <div className="intro" id="intro">
-      <img src="assets/img/logopng.png" alt="" className="logo" />
+      <img src="assets/img/logo-text.png" alt="" className="logo" />
       <div className="wrapper">
         <h1>
           Motor Work - <span ref={textRef}></span>

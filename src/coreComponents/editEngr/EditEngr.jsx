@@ -6,6 +6,7 @@ import avatarp from "./assets/download.png";
 import Logout from "../logout/Logout";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../../config";
+import dateFormat from "dateformat"
 
 const EditEngr = () => {
   const [engr, setEngr] = useState([]);
@@ -78,7 +79,7 @@ const EditEngr = () => {
           <div className="admin">
             <div className="txt">{user.username}</div>
             <img
-              src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
+              src="/assets/img/new-logo.jpg"
               alt=""
             />
           </div>
@@ -123,6 +124,7 @@ const EditEngr = () => {
             <p>City: {engr.city}</p>
             <p>Display Name: {engr.displayName}</p>
             <p>Address: {engr.address}</p>
+            <p>Subscription expires in: {(dateFormat( engr.expiresIn, "mmmm-dd-yyyy"))}</p>
           </div>
         </div>
       </div>

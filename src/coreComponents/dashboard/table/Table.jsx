@@ -4,7 +4,7 @@ import "./table.scss";
 import { Link } from "react-router-dom";
 import { axiosInstance } from "../../../config";
 
-const Table = () => {
+const Table = ({query}) => {
   const [engr, setEngr] = useState([]);
 
   //   const { user } = useContext(Context);
@@ -17,7 +17,16 @@ const Table = () => {
     fetchEngrs();
   }, [setEngr]);
 
-  const reversed = [...engr].reverse()
+  const reversed = [...engr].reverse();
+
+  // query engineer
+  useEffect(()=>{
+    const fetchEngr = async () => {
+      const res = await axiosInstance.get("/engineer/engineer-query/?email="+query);
+      setEngr(res.data)
+    }
+    fetchEngr();
+  }, [query])
 
   return (
     <div className="table">
@@ -38,26 +47,26 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {reversed.map((engrs) => (
-            <tr key={engrs._id}>
+          {reversed.map((e) => (
+            <tr key={e._id}>
               <th scope="row">
                 <input type="checkbox" name="index" id="" />
               </th>
-              <td>{engrs.fullName}</td>
-              <td>{engrs.email}</td>
-              <td>{engrs.phoneNumber}</td>
-              <td>{engrs.country}</td>
-              <td>{engrs.state}</td>
+              <td>{e.fullName}</td>
+              <td>{e.email}</td>
+              <td>{e.phoneNumber}</td>
+              <td>{e.country}</td>
+              <td>{e.state}</td>
               {/* <td>{engrs.town}</td> */}
-              <td>{engrs.city}</td>
-              <td>{engrs.displayName}</td>
-              <td>{engrs.address}</td>
+              <td>{e.city}</td>
+              <td>{e.displayName}</td>
+              <td>{e.address}</td>
               <td className="status">
                 <Link
-                  to={`/auto/edit-engineer/${engrs.email}`}
-                  className={engrs.isActive ? "active" : "inactive"}
+                  to={`/auto/edit-engineer/${e.email}`}
+                  className={e.isActive ? "active" : "inactive"}
                 >
-                  {engrs.isActive ? "Active" : "Inactive"}
+                  {e.isActive ? "Active" : "Inactive"}
                 </Link>
               </td>
             </tr>

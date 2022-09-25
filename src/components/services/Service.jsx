@@ -7,7 +7,7 @@ export default function Service() {
         <h1>WELCOME TO AUTO MOBILE</h1>
         <h3>SERVICES</h3>
         <p>
-          At.... we aim to prevent problems before they happen. We use the
+          At FIXE we aim to prevent problems before they happen. We use the
           latest vehicle diagnostic technologies and the highest quality parts
           for servicing and repairs. Whatever you need, we have the skills to do
           it right.
@@ -15,11 +15,11 @@ export default function Service() {
         <br />
         <h3>LOCATE A NEARBY AUTO SHOP</h3>
         <p>
-          You’re a busy person — don’t let vehicle problems get in your way.....
+          You’re a busy person — don’t let vehicle problems get in your way, FIXE
           has the proper equipment and experience to locate, repair and/or
           replace the issue quickly and effectively by contacting the nearest
-          auto engineer around. click the icon the icon to locate the nearest
-          auto mechanic or auto shop around
+          auto engineer around. Get started by clicking the button below to locate the nearest
+          auto mechanic around you.
         </p>
       </div>
       <div className="right">

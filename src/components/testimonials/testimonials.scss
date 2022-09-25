@@ -42,11 +42,15 @@
       justify-content: center;
       width: 35%;
       height: 350px;
-      margin: 20px;
+      margin: 5px;
       background-color: white;
       border-radius: 20px;
       padding: 10px;
       overflow: hidden;
+      @include tab {
+        width: 80%;
+        margin: 10px;
+      }
       @include mobile {
         width: 80%;
         margin: 10px;
@@ -66,7 +70,7 @@
       p {
         padding: 0px 20px;
         margin-top: 10px;
-        text-align: center;
+        text-align: right;
         height: 80%;
         overflow: hidden;
         font-size: 14px;
@@ -74,6 +78,8 @@
       }
       h3 {
         height: 20%;
+        font-size: 20px;
+        text-align: center;
         color: $mainColor;
         overflow: hidden;
       }

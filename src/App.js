@@ -21,6 +21,7 @@ import EditEngr from "./coreComponents/editEngr/EditEngr";
 import Settings from "./coreComponents/settings/Settings";
 import Login from "./coreComponents/login/Login";
 import { Context } from "./context/Context";
+import Payment from "./coreComponents/payment/Payment";
 
 function App() {
   const { user } = useContext(Context);
@@ -50,6 +51,10 @@ function App() {
 
         <Route path="/engineer">
           <LocateE />
+        </Route>
+
+        <Route path="/payment">
+          <Payment />
         </Route>
 
         <Route path="/register">

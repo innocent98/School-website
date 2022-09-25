@@ -8,27 +8,34 @@ import { IpAdrress } from "../../config/Api.config";
 
 const Locate = () => {
   const [engrs, setEngr] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [notFetch, setNotFetch] = useState(false);
   const [ipData, setIPData] = useState();
 
-  // get IP address
+  // get engineer address
   useEffect(() => {
     if (!ipData) {
       IpAdrress({ setLoading, setIPData });
     }
   }, [ipData]);
-  
+
   const getEngineer = async () => {
+    setLoading(true);
     try {
       const res = await axiosInstance.get(
         `/engineer/engineer/?location=${ipData}`
       );
+      setLoading(false);
       setEngr(res.data);
+      engrs.length < 1 && setNotFetch(true)
     } catch (error) {
+      setNotFetch(true);
       return alert(error.response.data);
     }
   };
   console.log(ipData);
+
+  const reversed = [...engrs].reverse()
 
   return (
     <div className="locateE">
@@ -44,30 +51,40 @@ const Locate = () => {
 
         <div className="container">
           {loading && <p>Please wait while we load data...</p>}
-          {engrs.map((engr) => (
-            <ul key={engr.id}>
-              <li>
-                <div className="details">
-                  <p>{engr.fullName}</p>
-                  <p>{engr.displayName}</p>
-                  <p>{engr.address}</p>
-                  <p>
-                    <a
-                      href={`tel: ${engr.phoneNumber}`}
-                      style={{ color: "blue", fontWeight: "bold" }}
-                    >
-                      Click
-                    </a>{" "}
-                    to call engineer
-                  </p>
-                </div>
-                <div className="img">
-                  <img src={engr.picture ? engr.picture : avatarp} alt="" />
-                </div>
-              </li>
-              <hr />
-            </ul>
-          ))}
+          {engrs.length >= 1 ? (
+            <>
+              {!loading && reversed.map((engr) => (
+                <ul key={engr.id}>
+                  <li>
+                    <div className="details">
+                      <p>{engr.fullName}</p>
+                      <p>{engr.displayName}</p>
+                      <p>{engr.address}</p>
+                      <p>
+                        <a
+                          href={`tel: ${engr.phoneNumber}`}
+                          style={{ color: "blue", fontWeight: "bold" }}
+                        >
+                          Click
+                        </a>{" "}
+                        to call engineer
+                      </p>
+                    </div>
+                    <div className="img">
+                      <img src={engr.picture ? engr.picture : avatarp} alt="" />
+                    </div>
+                  </li>
+                  <hr />
+                </ul>
+              ))}
+            </>
+          ) : (
+            notFetch && (
+              <p style={{ textAlign: "center" }}>
+                {!loading && "No available Engineer around you at the moment"}
+              </p>
+            )
+          )}
         </div>
       </div>
     </div>

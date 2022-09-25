@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import "./register.scss";
 // import axios from "axios";
-import TopBarSec from "../topBarSec/TopBar";
+// import TopBarSec from "../topBarSec/TopBar";
 import storage from "../../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { axiosInstance } from "../../config";
 import { IpAdrress } from "../../config/Api.config";
+import { IpAdrress2 } from "../../config/Api.config";
 
 export default function Register() {
   const [success, setSuccess] = useState(false);
@@ -16,7 +17,7 @@ export default function Register() {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [town, setTown] = useState("");
-  const [city, setCity] = useState("");
+  // const [city, setCity] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [address, setAddress] = useState("");
   const [picture, setPicture] = useState(null);
@@ -25,6 +26,7 @@ export default function Register() {
 
   const [loading, setLoading] = useState(true);
   const [ipData, setIPData] = useState();
+  const [ipData2, setIPData2] = useState();
 
   // get IP address
   useEffect(() => {
@@ -33,6 +35,17 @@ export default function Register() {
     }
   }, [ipData]);
 
+  useEffect(() => {
+    if (!ipData2) {
+      IpAdrress2({ setLoading, setIPData2 });
+    }
+  }, [ipData2]);
+
+  // console.log(ipData)
+
+  const currentTime = new Date();
+  const futureDate = new Date(currentTime.setMonth(currentTime.getMonth() + 1));
+
   const newUpload = {
     fullName,
     email,
@@ -40,10 +53,12 @@ export default function Register() {
     country,
     state,
     town,
-    // city: ipData.city,
+    city: ipData,
+    zip: ipData2,
     displayName,
     address,
     picture: picture,
+    expiresIn: futureDate,
   };
 
   const handleClick = (e) => {
@@ -81,18 +96,18 @@ export default function Register() {
       const res = await axiosInstance.post("/engineer/", newUpload);
       setSuccess(true);
       window.location.reload("/register" + res.data._id);
+      return alert(res.data.message)
     } catch (error) {
-      return alert(error.response.data)
+      return alert(error.response.data);
     }
   };
 
   return (
     <div className="register" id="register">
-      <div className="top">
-        <TopBarSec />
-      </div>
+      <div className="top">{/* <TopBarSec /> */}</div>
       <div className="right">
-        <h3>Register as an engineer</h3>
+        <h3>Register free to become one of our Automobile Engineer</h3>
+        <p>Please note that free trial ends in one month after registration which you will be required subscribe to use our services</p>
         <form className="row g-3" onSubmit={handleSubmit}>
           <div className="col-md-4">
             <input
@@ -140,17 +155,6 @@ export default function Register() {
             />
           </div>
           <div className="col-md-4">
-            <textarea name="" id="" cols="50" rows="30" value={ipData} placeholder="Town"></textarea>
-            <input
-              type="text"
-              placeholder="Town"
-              required
-              className="form-control shadow-none"
-              value={ipData}
-              // onChange={(e) => setTown(e.target.value.toLowerCase())}
-            />
-          </div>
-          <div className="col-md-4">
             <input
               type="text"
               placeholder="City"
@@ -179,7 +183,7 @@ export default function Register() {
           </div>
           <div className="col-md-4">
             <label htmlFor="file" className="form-label">
-              Display Picture
+              Shop Display Picture
             </label>
             <input
               type="file"
@@ -203,7 +207,11 @@ export default function Register() {
               Upload picture
             </div>
           </div>
-          <button className="submit-button" type="submit" disabled={progress < 100}>
+          <button
+            className="submit-button"
+            type="submit"
+            disabled={progress < 100}
+          >
             Submit
           </button>
         </form>

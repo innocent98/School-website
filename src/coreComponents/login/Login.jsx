@@ -11,11 +11,9 @@ export default function Login() {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axiosInstance.post("/auth/admin-login", {
@@ -25,7 +23,7 @@ export default function Login() {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err });
-      setError(true);
+      return alert(err.response.data.message);
     }
   };
 
@@ -68,7 +66,6 @@ export default function Login() {
             {isFetching ? <CircularProgress /> : "Login"}
           </button>
         </form>
-        {error && <span>Connecteion Error!</span>}
       </div>
     </div>
   );

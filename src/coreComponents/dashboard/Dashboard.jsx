@@ -1,7 +1,6 @@
 import "./dashboard.scss";
 import { NotificationsOutlined } from "@material-ui/icons";
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import Table from "./table/Table";
 import Logout from "../logout/Logout";
@@ -9,6 +8,8 @@ import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const { user } = useContext(Context);
+
+  const [query, setQuery] = useState();
 
   return (
     <div className="dashboard">
@@ -39,6 +40,14 @@ const Dashboard = () => {
           <div className="notification">
             <NotificationsOutlined />
           </div>
+          <div className="search">
+            <input
+              type="text"
+              placeholder="Search using email"
+              className="form-control"
+              onChange={(e) => setQuery(e.target.value.toLowerCase())}
+            />
+          </div>
         </div>
 
         <div className="info">
@@ -47,7 +56,7 @@ const Dashboard = () => {
         </div>
 
         <div className="engrTable">
-          <Table />
+          <Table query={query} />
         </div>
       </div>
     </div>

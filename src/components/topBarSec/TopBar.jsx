@@ -8,7 +8,7 @@ export default function TopBarSec() {
     <div className="topbar">
       <div className="left">
         <a href="/">
-          <img src="assets/img/logom.jpg" alt="" />
+          <img src="assets/img/new-logo.jpg" alt="" />
         </a>
       </div>
       <div className="right">
@@ -29,7 +29,7 @@ export default function TopBarSec() {
             <a href="/">FAQs</a>{" "}
           </li>
           <li>
-            <a href="/register">Register</a>{" "}
+            <a href="/register">Become an Engineer</a>{" "}
           </li>
         </ul>
       </div>

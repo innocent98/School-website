@@ -31,7 +31,7 @@ const Sidebar = ({ sidebar, setSidebar }) => {
         </li>
         <li>
           <a href="/register" onClick={() => setSidebar(!sidebar)}>
-            Register
+          Become an Engineer
           </a>{" "}
         </li>
       </ul>

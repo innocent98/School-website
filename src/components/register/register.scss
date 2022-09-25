@@ -29,9 +29,14 @@
 
     h3 {
       color: $mainColor;
+      text-transform: capitalize;
+      text-align: center;
       @include mobile {
         font-size: 20px;
       }
+    }
+    p{
+      text-align: center;
     }
     .row {
       padding: 10px 0;
@@ -59,11 +64,11 @@
           justify-content: center;
           margin-top: 5px;
         }
-        .none{
+        .none {
           display: none;
         }
-        
-        .button{
+
+        .button {
           border: none;
           padding: 5px 8px;
           border-radius: 4px;
@@ -73,15 +78,23 @@
       .submit-button {
         border: none;
         border-radius: 8px;
-        padding: 15px 0;
+        padding: 10px 0;
+        width: 33%;
         font-size: 20px;
         font-weight: bold;
         background-color: $mainColor;
         color: white;
+        margin-left: -33%;
+        text-align: center;
+        @include tab {
+          padding: 10px 0;
+          margin-left: 0;
+        }
         @include mobile {
           padding: 10px 0;
+          margin-left: 0;
         }
-        &:disabled{
+        &:disabled {
           cursor: not-allowed;
           background-color: aliceblue;
         }

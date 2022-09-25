@@ -1,0 +1,40 @@
+@import "../../global.scss";
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: whitesmoke;
+  h3{
+    color: $mainColor;
+    text-align: center;
+  }
+  .row {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include tab{
+      width: 60%;
+    }
+    @include mobile{
+      width: 80%;
+    }
+    .col-md-3 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      label{
+        color: gray;
+      }
+      input{
+        &::placeholder{
+            color: lightgray;
+        }
+      }
+    }
+  }
+}

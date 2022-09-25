@@ -46,10 +46,13 @@
       border: 5px solid lightgray;
       overflow: hidden;
       cursor: pointer;
+      text-align: center;
 
       @include mobile {
         width: 90%;
         flex-direction: column;
+        font-size: 14px;
+        padding: 10px;
       }
 
       .form-control {
@@ -113,6 +116,11 @@
         li {
           display: flex;
           justify-content: space-between;
+          @include tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
           @include mobile {
             flex-direction: column;
             justify-content: center;
@@ -132,8 +140,8 @@
           }
           .img {
             flex: 0.5;
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 5px;
             cursor: pointer;
             @include tab {
@@ -147,6 +155,7 @@
 
           p {
             overflow: hidden;
+            text-align: left;
           }
         }
       }

@@ -5,7 +5,7 @@ export default function TopBar({ sidebar, setSidebar }) {
     <div className="topbar">
       <div className="left">
         <a href="#intro">
-          <img src="assets/img/logom.jpg" alt="" />
+          <img src="assets/img/new-logo.jpg" alt="" />
         </a>
       </div>
       <div className="right">
@@ -26,7 +26,7 @@ export default function TopBar({ sidebar, setSidebar }) {
             <a href="#faq">FAQs</a>{" "}
           </li>
           <li>
-            <a href="/register">Register</a>{" "}
+            <a href="/register">Become an Engineer</a>{" "}
           </li>
         </ul>
       </div>
